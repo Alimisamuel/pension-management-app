@@ -1,6 +1,8 @@
 import React from 'react'
 import { PATHS } from '../routes/route.path'
 import { Link, useLocation } from 'react-router-dom'
+import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
+import { MenuItem } from '@mui/material';
 
 const SideBar = () => {
     const router = useLocation();
@@ -16,6 +18,11 @@ const SideBar = () => {
                 </Link>
             ))
         }
+
+<MenuItem sx={{mt:40}}>
+<Link to="/login" className='no-underline text-black'>
+        <p className='pl-10 py-2 '>Logout <ExitToAppOutlinedIcon/></p></Link>
+</MenuItem>
 
       </div>
     </div>
