@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/optima');
+
+body {
+  margin: 0;
+    font-family: "outfit" ;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color:#051F10;
+  background:#fafbfb !important;
+}
+
+.optima{
+  font-family: 'optima';
+  font-weight: 900;
+}
+
+.button {
+  cursor: pointer;
+  transition: all 0.3s ease !important;
+  position: relative;
+  overflow: hidden;
+
+}
+
+.button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
