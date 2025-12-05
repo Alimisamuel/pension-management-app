@@ -1,23 +1,32 @@
-// import { selectToken } from "api/slice/auth";
 import { JSX } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-// import { useAppSelector } from "store/hooks";
+import { useAuth } from "../hooks/useAuth";
+import type { UserRole } from "../services/api";
 
-const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
-  // Access token from Redux store
-  const token = "";
+interface ProtectedRouteProps {
+  children: JSX.Element;
+  roles?: UserRole[];
+}
 
-  const user = token || window.localStorage.getItem("authToken");
+const ProtectedRoute = ({ children, roles }: ProtectedRouteProps) => {
+  const { isAuthenticated, user } = useAuth();
+  const location = useLocation();
 
-  const location = useLocation(); // To remember where the user was trying to go
-
-  if (!user) {
+  if (!isAuthenticated) {
     return (
-      <Navigate to="/login" state={{ redirectTo: location.pathname }} replace />
+      <Navigate
+        to="/login"
+        state={{ redirectTo: location.pathname }}
+        replace
+      />
     );
   }
 
-  // If token exists, render the protected route
+  if (roles && user && !roles.includes(user.role)) {
+    // User is logged in but not authorized for this route
+    return <Navigate to="/" replace />;
+  }
+
   return children;
 };
 

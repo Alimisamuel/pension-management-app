@@ -1,14 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { ThemeContextProvider } from './theme/ThemeContextProvider';
 import { Routes } from './routes';
+import { AuthProvider } from './hooks/useAuth';
 
 function App() {
   return (
     <ThemeContextProvider>
-   <div id="continerBackdrop"></div>
-<Routes/>
+      <AuthProvider>
+        <div id="continerBackdrop"></div>
+        <Routes />
+      </AuthProvider>
     </ThemeContextProvider>
   );
 }

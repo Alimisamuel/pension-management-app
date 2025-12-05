@@ -5,22 +5,24 @@ import DashboardLayout from "../layouts";
 import Dashboard from "../features/dashboard";
 import ContributionPage from "../features/contributions";
 import StatementPage from "../features/statements";
+import ProtectedRoute from "./ProtectedRoute";
 
 export function Routes() {
-  let element = useRoutes([
+  const element = useRoutes([
     {
       path: PATHS.LOGIN,
       element: <Login />,
     },
-
     {
       path: PATHS.FORGOT_PASSWORD,
-
       element: <ForgetPassword />,
     },
-
     {
-      element: <DashboardLayout />,
+      element: (
+        <ProtectedRoute>
+          <DashboardLayout />
+        </ProtectedRoute>
+      ),
       children: [
         {
           path: PATHS.DASHBOARD,
@@ -37,5 +39,6 @@ export function Routes() {
       ],
     },
   ]);
+
   return element;
 }
